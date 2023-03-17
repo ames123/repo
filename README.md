@@ -3,4 +3,4 @@
 
 | Name Surname (initials) | GUID                                     |
 | ----------------------- | ---------------------------------------- |
-| Aleksandra Mes          | 242468                                   |
+| Aleksandra Mes (AM)     | 242468                                   |
