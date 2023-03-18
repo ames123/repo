@@ -3,4 +3,4 @@
 
 | Name Surname (initials) | GUID                                     |
 | ----------------------- | ---------------------------------------- |
-| Aleksandra Mes (AM)     | 949f6937-f224-4f72-b3a4-d43f78f6ec66     |
+| Aleksandra Mes (AM)     | 07A8EE26-C878-480B-9DF4-71F1807DC7A0     |
