@@ -56,9 +56,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Wspolbierzne\Wspolbierzne.csproj">
+    <ProjectReference Include="..\Wspolbierzne\Model.csproj">
       <Project>{07a8ee26-c878-480b-9df4-71f1807dc7a0}</Project>
-      <Name>Wspolbierzne</Name>
+      <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
