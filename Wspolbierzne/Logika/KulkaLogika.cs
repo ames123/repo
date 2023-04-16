@@ -1,24 +1,49 @@
-﻿using System;
+﻿using Dane;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace Logika
 {
     public class KulkaLogika : INotifyPropertyChanged
     {
-        
         private Kulka kulka;
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         public KulkaLogika(Kulka kulka)
         {
             this.kulka = kulka;
-            kulka.PropertyChanged += Update;
+            kulka.PropertyChanged += Aktualizuj;
         }
-        private void Update(object source, PropertyChangedEventArgs e)
+        public double X
         {
-            if (e.PropertyName == "XP")
+            get 
+            { 
+                return kulka.X; 
+            }
+            set
+            {
+                kulka.X = value;
+                OnPropertyChanged("X");
+            }
+        }
+        public double Y
+        {
+            get 
+            { 
+                return kulka.Y;
+            }
+            set
+            {
+                kulka.Y = value;
+                OnPropertyChanged("Y");
+            }
+        }
+        private void Aktualizuj(object source, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "X")
             {
                 OnPropertyChanged("X");
             }
@@ -28,24 +53,7 @@ namespace Logika
             }
 
         }
-        public int X
-        {
-            get { return kulka.X; }
-            set
-            {
-                kulka.X = value;
-                OnPropertyChanged("X");
-            }
-        }
-        public int Y
-        {
-            get { return kulka.Y; }
-            set
-            {
-                kulka.Y = value;
-                OnPropertyChanged("Y");
-            }
-        }
+
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
