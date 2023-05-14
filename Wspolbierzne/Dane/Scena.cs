@@ -23,28 +23,28 @@ namespace Dane
             }
         }
         public bool Enabled
+        {
+            get
             {
-                get 
-            { 
                 return enabled;
             }
-                set 
-            { 
-                enabled = value; 
+            set
+            {
+                enabled = value;
             }
-            }
+        }
 
 
         private readonly List<Kulka> kulka = new List<Kulka>();
-            public List<Kulka> Kulka
+        public List<Kulka> Kulka
+        {
+            get
             {
-                get 
-            { 
                 return kulka;
             }
-            }
+        }
 
-       public Scena(int width, int height, int ileKulek)
+        public Scena(int width, int height, int ileKulek)
         {
             this.width = width;
             this.height = height;
@@ -54,10 +54,10 @@ namespace Dane
         public Kulka GenerujKulki()
         {
             Random random = new Random();
-            int x , y;
+            int x, y;
             x = random.Next(prom, width - prom);
             y = random.Next(prom, height - prom);
-            return new Kulka(x, y);
+            return new Kulka(x, y,1);
         }
         public void GenerujListeKulek(int ileKulek)
         {

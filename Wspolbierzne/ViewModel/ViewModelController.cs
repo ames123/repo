@@ -24,17 +24,17 @@ namespace ViewModel
             set;
         }
         public ViewModelController() : this(null) { }
-        public ViewModelController (AbstractModelApi ModelApi = null)
+        public ViewModelController(AbstractModelApi ModelApi = null)
         {
             SignalEnable = new Sygnal(Enable);
             SignalDisable = new Sygnal(Disable);
             if (ModelApi == null)
             {
-                this.modelApi = AbstractModelApi.CreateApi();
+                modelApi = AbstractModelApi.CreateApi();
             }
             else
             {
-                this.modelApi = ModelApi;
+                modelApi = ModelApi;
             }
         }
 
@@ -69,8 +69,8 @@ namespace ViewModel
         public bool IsEnabled
         {
             get { return isEnabled; }
-            set 
-            { 
+            set
+            {
                 isEnabled = value;
                 isDisabled = !isEnabled;
                 OnPropertyChanged("IsEnabled");
@@ -82,8 +82,8 @@ namespace ViewModel
             modelApi.Enable(ileKulek);
             KulkiLista = modelApi.GetAllKola();
         }
-        public bool IsDisabled 
-        { 
+        public bool IsDisabled
+        {
             get
             {
                 return isDisabled;

@@ -12,8 +12,8 @@ namespace Model
 
         public Kolo(KulkaLogika kulka)
         {
-            this.x = kulka.X;
-            this.y = kulka.Y;
+            x = kulka.X;
+            y = kulka.Y;
             kulka.PropertyChanged += Aktualizuj;
         }
 
@@ -37,17 +37,17 @@ namespace Model
             }
         }
 
-        private void Aktualizuj(object source, PropertyChangedEventArgs key)
+        private void Aktualizuj(object source, PropertyChangedEventArgs e)
         {
             KulkaLogika sKulka = (KulkaLogika)source;
-            if(key.PropertyName == "X")
+            if (e.PropertyName == "X")
             {
-                this.X = sKulka.X - 15;
+                X = sKulka.X - 15;
             }
 
-            if(key.PropertyName == "Y")
+            if (e.PropertyName == "Y")
             {
-                this.Y = sKulka.Y - 15;
+                Y = sKulka.Y - 15;
             }
 
         }

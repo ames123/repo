@@ -19,9 +19,9 @@ namespace Logika
         }
         public double X
         {
-            get 
-            { 
-                return kulka.X; 
+            get
+            {
+                return kulka.X;
             }
             set
             {
@@ -31,8 +31,8 @@ namespace Logika
         }
         public double Y
         {
-            get 
-            { 
+            get
+            {
                 return kulka.Y;
             }
             set

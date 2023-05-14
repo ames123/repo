@@ -1,4 +1,4 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Dane;
 
 namespace Testy
@@ -6,7 +6,7 @@ namespace Testy
     [TestClass]
     public class KulkiTest
     {
-        Kulka kulka = new Kulka(5, 10);
+        Kulka kulka = new Kulka(5, 10, 6);
 
         [TestMethod]
         public void GetterTest()

@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Dane
 {
@@ -24,14 +25,15 @@ namespace Dane
             private Scena scene;
             private readonly object locked = new object();
 
-            public bool Enabled 
+            public bool Enabled
             {
                 get { return enabled; }
                 set { enabled = value; }
             }
 
-            public override Scena Scene { 
-                get { return scene; } 
+            public override Scena Scene
+            {
+                get { return scene; }
             }
 
             public override void CreateScena(int width, int height, int ileKulek)
@@ -44,15 +46,16 @@ namespace Dane
                 {
                     //tworzy wątki
                     Thread t = new Thread(() => {
-                        while (this.Enabled)
+                        while (Enabled)
                         {
                             //blokuje, aby wiele wątków nie mogło jednocześnie zmienić położenia kuli
-                            lock (locked)
+                            //lock (locked)
                             {
                                 kulka.move();
                             }
-
-                            Thread.Sleep(3);
+                            Thread.Sleep(11);
+                            //Task.Delay(20).GetAwaiter().GetResult();
+                            //await Task.Delay(14);
                         }
                     });
                     t.Start();

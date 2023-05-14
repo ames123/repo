@@ -18,7 +18,7 @@ namespace ViewModel
         }
 
         public bool CanExecute(object parameter) => this.canExecute == null || this.canExecute();
-        
+
         public void Execute(object parameter) => this.execute();
 
         internal void OnCanExecuteChanged()

@@ -10,7 +10,7 @@ namespace Logika
         public abstract List<KulkaLogika> GetKulki();
         public abstract void Disable();
         public abstract void Enable(int width, int height, int ileKulek);
-         public static AbstractLogicApi CreateApi()
+        public static AbstractLogicApi CreateApi()
         {
             throw new NotImplementedException();
         }
@@ -34,7 +34,7 @@ namespace Logika
                 get { return enabled; }
                 set { enabled = value; }
             }
-                        public override void Disable()
+            public override void Disable()
             {
                 DataApi.Disable();
                 kulki.Clear();
@@ -61,10 +61,10 @@ namespace Logika
             {
                 return kulki;
             }
- 
+
             public override void Enable(int width, int height, int ileKulek)
             {
-               
+
                 DataApi.CreateScena(width, height, ileKulek);
                 foreach (Kulka kulka in DataApi.GetKulki())
                 {
@@ -79,41 +79,60 @@ namespace Logika
                 if (ev.PropertyName == "Position")
                 {
                     Sprawdz(kulka);
+                    CzyKoliduje(kulka);
                 }
 
             }
+            private void CzyKoliduje(Kulka kulka)
+            {
+                foreach (Kulka k in DataApi.GetKulki())
+                {
+                    if (k == kulka)
+                    {
+                        continue;
+                    }
+                    double xDiff = k.X - kulka.X;
+                    double yDiff = k.Y - kulka.Y;
+                    double distance = Math.Sqrt((xDiff * xDiff) + (yDiff * yDiff));
+                    if (distance <= (15))
+                    {
+                        double newSpeed = ((k.x2 * (k.Weight - kulka.Weight) + (k.Weight * kulka.x2* 2)) / (k.Weight + kulka.Weight));
+                        kulka.x2 = ((kulka.x2 * (kulka.Weight - k.Weight) + (k.Weight * k.x2 * 2)) / (k.Weight + kulka.Weight));
+                        k.x2 = newSpeed;
 
-            private void Sprawdz(Kulka kulka)
+                        newSpeed = ((k.y2 * (k.Weight - kulka.Weight)) + (kulka.Weight * kulka.y2 * 2) / (k.Weight + kulka.Weight));
+                        kulka.y2 = ((kulka.y2 * (kulka.Weight - k.Weight)) + (k.Weight * k.y2 * 2) / (k.Weight + kulka.Weight));
+                        k.y2 = newSpeed;
+                    }
+                }
+            }
+                private void Sprawdz(Kulka kulka)
             {
                 if ((kulka.Y - 15) <= 0)
                 {
-                    kulka.x2 = kulka.GenerujX();
-                    kulka.GenerujY(kulka.x2);
+                    kulka.y2 = -kulka.y2;
                     kulka.Y = 15;
                 }
                 if ((kulka.X - 15) <= 0)
                 {
                     kulka.x2 = -kulka.x2;
-                    kulka.GenerujY(kulka.x2);
                     kulka.X = 15;
                 }
                 if ((kulka.X + 15) >= DataApi.Scene.Width)
                 {
                     kulka.x2 = -kulka.x2;
-                    kulka.GenerujY(kulka.x2);
                     kulka.X = DataApi.Scene.Width - 15;
                 }
                 if ((kulka.Y + 15) >= DataApi.Scene.Height)
                 {
-                    kulka.x2=kulka.GenerujX();
-                    kulka.GenerujY(kulka.x2);
+                    kulka.y2 = -kulka.y2;
                     kulka.Y = DataApi.Scene.Height - 15;
                 }
 
             }
 
-     
-            
+
+
         }
     }
 }
