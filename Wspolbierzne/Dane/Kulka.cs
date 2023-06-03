@@ -69,11 +69,6 @@ namespace Dane
 
         public async void move()
         {
-            //rusza asynchronicznie kulki
-            await Task.Run(() => Rusz());
-        }
-        public void Rusz()
-        {
             X += x2;
             Y += y2;
             OnPropertyChanged("Position");

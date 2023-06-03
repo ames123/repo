@@ -24,6 +24,7 @@ namespace Dane
             private bool enabled = false;
             private Scena scene;
             private readonly object locked = new object();
+            private Logger logger;
 
             public bool Enabled
             {
@@ -41,7 +42,7 @@ namespace Dane
                 scene = new Scena(width, height, ileKulek);
                 Enabled = true;
                 List<Kulka> kulki = GetKulki();
-
+                logger = new Logger(kulki);
                 foreach (Kulka kulka in kulki)
                 {
                     //tworzy wątki
@@ -49,7 +50,7 @@ namespace Dane
                         while (Enabled)
                         {
                             //blokuje, aby wiele wątków nie mogło jednocześnie zmienić położenia kuli
-                            //lock (locked)
+                            lock (locked)
                             {
                                 kulka.move();
                             }
@@ -70,6 +71,7 @@ namespace Dane
             public override void Disable()
             {
                 Enabled = false;
+                logger.stop();
             }
         }
     }

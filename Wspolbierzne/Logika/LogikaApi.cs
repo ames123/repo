@@ -130,9 +130,6 @@ namespace Logika
                 }
 
             }
-
-
-
         }
     }
 }
