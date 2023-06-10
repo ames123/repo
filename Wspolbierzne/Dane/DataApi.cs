@@ -42,6 +42,7 @@ namespace Dane
                 scene = new Scena(width, height, ileKulek);
                 Enabled = true;
                 List<Kulka> kulki = GetKulki();
+                //tworzy logger
                 logger = new Logger(kulki);
                 foreach (Kulka kulka in kulki)
                 {
